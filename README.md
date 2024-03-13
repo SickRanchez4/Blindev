@@ -1,2 +1,0 @@
-# Blindev
-Blindev Home Page
