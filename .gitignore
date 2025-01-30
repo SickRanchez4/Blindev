@@ -1,0 +1,33 @@
+# Descarta archivos de compilación
+/dist/
+/build/
+/bin
+/obj
+.env
+/node_modules
+
+# Descarta archivos generados por el editor
+.vs/
+.vscode/
+.idea/
+
+# Descarta archivos de caché
+npm-cache/
+.npm/
+
+# Descarta archivos de configuración local
+.DS_Store
+Thumbs.db
+
+# Descarta archivos de base de datos
+*.sqlite
+*.db
+
+# Descarta archivos de log
+logs/
+
+# Descarta archivos temporales
+*.swp
+*~
+*.user
+

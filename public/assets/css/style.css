@@ -393,6 +393,10 @@ img {
 	padding-bottom:60px;
 }
 
+.productoContainer {
+    margin: 0 auto; 
+}
+
 /* Clients
 ---------------------------------*/
 .client-part{

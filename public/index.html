@@ -6,7 +6,6 @@
 
 <title>Blindev</title>
 <link rel="icon" href="assets/img/favicon.png" type="image/png">
-<link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
@@ -35,7 +34,7 @@
         </figure>	
         <h1 class="animated fadeInDown delay-07s">Blindev</h1>
         <ul class="we-create animated fadeInUp delay-1s">
-        	<li>Somos una agencia digital de desarrollo de software.</li>
+        	<li>Ingeniería de software a tu medida.</li>
         </ul>
             <a class="link animated fadeInUp delay-1s servicelink" href="#service">Inicio</a>
     </div>
@@ -47,7 +46,7 @@
         	<li><a href="#header">Inicio</a></li>
             <li><a href="#service">Servicios</a></li>
             <li class="small-logo"><a href="#header"><img src="assets/img/small-logo.png" alt=""></a></li>
-            <li><a href="#Portfolio">Portfolio</a></li>
+            <li><a href="#Portfolio">Productos</a></li>
             <li><a href="#contact">Contáctanos</a></li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
@@ -156,8 +155,8 @@
 <section class="main-section paddind" id="Portfolio"><!--main-section-start-->
 	<div class="container">
     	<h2>Portfolio</h2>
-    	<h6>Explora nuestro portfolio, conoce nuestro trabajo y descrubre nuestra historia .</h6>
-      <div class="portfolioFilter">  
+    	<h6>Explora nuestros productos, conoce nuestro trabajo y descrubre nuestra historia .</h6>
+      <div class="productoFilter">  
         <ul class="Portfolio-nav wow fadeIn delay-02s">
         	<li><a href="#" data-filter="*" class="current" >All</a></li>
             <li><a href="#" data-filter=".branding" >Branding</a></li>
@@ -168,7 +167,7 @@
        </div> 
         
 	</div>
-    <div class="portfolioContainer wow fadeInUp delay-04s">
+    <div class="productoContainer wow fadeInUp delay-04s">
             	<div class=" Portfolio-box printdesign">
                 	<a href="#"><img src="assets/img/Portfolio-pic1.jpg" alt=""></a>	
                 	<h3>Foto Album</h3>
@@ -244,9 +243,9 @@
 
         <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
             <div class="form">
-                <div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-                <form action="" method="post" role="form" class="contactForm">
+                <div id="sendmessage" style="display: none;">Tu mensaje fue enviado con éxito. Gracias!</div>
+                <div id="errormessage" style="display: none;"></div>
+                <form id="contactForm" method="post" role="form" class="contactForm">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control input-text" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                         <div class="validation"></div>
@@ -263,7 +262,6 @@
                         <textarea class="form-control input-text text-area" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensaje"></textarea>
                         <div class="validation"></div>
                     </div>
-                    
                     <div class="text-center"><button type="submit" class="input-btn">Enviar Mensaje</button></div>
                 </form>
             </div>	
@@ -292,16 +290,15 @@
     });
 </script>
 
-  <script>
+<script>
     wow = new WOW(
-      {
+        {
         animateClass: 'animated',
         offset:       100
-      }
+        }
     );
     wow.init();
-  </script>
-
+</script>
 
 <script type="text/javascript">
 	$(window).load(function(){
@@ -327,50 +324,96 @@
 </script>
 
 <script type="text/javascript">
+    $(window).load(function(){
+    var $container = $('.productoContainer'),
+        $body = $('body'),
+        colW = 375,
+        columns = null;
 
-$(window).load(function(){
-  
-  
-  var $container = $('.portfolioContainer'),
-      $body = $('body'),
-      colW = 375,
-      columns = null;
-
-  
-  $container.isotope({
-    // disable window resizing
-    resizable: true,
-    masonry: {
-      columnWidth: colW
-    }
-  });
-  
-  $(window).smartresize(function(){
-    // check if columns has changed
-    var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
-    if ( currentColumns !== columns ) {
-      // set new column count
-      columns = currentColumns;
-      // apply width to container manually, then trigger relayout
-      $container.width( columns * colW )
-        .isotope('reLayout');
-    }
     
-  }).smartresize(); // trigger resize to set container width
-  $('.portfolioFilter a').click(function(){
-        $('.portfolioFilter .current').removeClass('current');
-        $(this).addClass('current');
- 
-        var selector = $(this).attr('data-filter');
-        $container.isotope({
-			
-            filter: selector,
-         });
-         return false;
+    $container.isotope({
+        // disable window resizing
+        resizable: true,
+        masonry: {
+        columnWidth: colW
+        }
     });
-  
-});
+    
+    $(window).smartresize(function(){
+        // check if columns has changed
+        var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
+        if ( currentColumns !== columns ) {
+        // set new column count
+        columns = currentColumns;
+        // apply width to container manually, then trigger relayout
+        $container.width( columns * colW )
+            .isotope('reLayout');
+        }
+        
+    }).smartresize(); // trigger resize to set container width
+    $('.productoFilter a').click(function(){
+            $('.productoFilter .current').removeClass('current');
+            $(this).addClass('current');
+    
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                
+                filter: selector,
+            });
+            return false;
+        });
+    
+    });
+</script>
 
+<script>
+    async function obtenerBackendUrl() {
+      try {
+        const response = await fetch('config.json');
+        const data = await response.json();
+        return data.BACKEND_URL;
+      } catch (error) {
+        console.error('Error al leer el archivo JSON:', error);
+        return null;
+      }
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const backendUrl = await obtenerBackendUrl();
+        const send_message_url = `${backendUrl}/send-email`;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+
+        try {
+            const response = await fetch(send_message_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, subject, message }),
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                document.getElementById('sendmessage').style.display = 'block';
+                document.getElementById('errormessage').style.display = 'none';
+            } else {
+                document.getElementById('sendmessage').style.display = 'none';
+                document.getElementById('errormessage').style.display = 'block';
+                document.getElementById('errormessage').textContent = result.message || 'Error enviando el correo';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('sendmessage').style.display = 'none';
+            document.getElementById('errormessage').style.display = 'block';
+            document.getElementById('errormessage').textContent = 'Ocurrió un error al procesar tu solicitud.';
+        }
+    });
 </script>
 
 </body>
