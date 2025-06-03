@@ -19,9 +19,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             },
             body: JSON.stringify(data),
         });
-        
-        const result = response.json();
-        
+                
         if (response.ok) {
             document.getElementById('sendmessage').style.display = 'block';
             document.getElementById('errormessage').style.display = 'none';
@@ -29,7 +27,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         } else {
             document.getElementById('sendmessage').style.display = 'none';
             document.getElementById('errormessage').style.display = 'block';
-            document.getElementById('errormessage').textContent = result.message || 'Error enviando el correo';
+            document.getElementById('errormessage').textContent = 'Error enviando el correo';
         }
     } catch (error) {
         console.error('Error:', error);
