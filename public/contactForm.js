@@ -1,3 +1,11 @@
+const showMessage = (elementId, message, timeout = 3500) => {
+    const element = document.getElementById(elementId);
+    element.style.display = 'block';
+    if (message) element.textContent = message;
+    setTimeout(() => {
+        element.style.display = 'none';
+    }, timeout);
+};
 
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -11,7 +19,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
           subject: formData.get('subject'),
           message: formData.get('message'),
         };
-        
+
         const response = await fetch('/contact', {
             method: 'POST',
             headers: {
@@ -19,20 +27,15 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             },
             body: JSON.stringify(data),
         });
-                
+
         if (response.ok) {
-            document.getElementById('sendmessage').style.display = 'block';
-            document.getElementById('errormessage').style.display = 'none';
+            showMessage('sendmessage', null);
             e.target.reset();
         } else {
-            document.getElementById('sendmessage').style.display = 'none';
-            document.getElementById('errormessage').style.display = 'block';
-            document.getElementById('errormessage').textContent = 'Error enviando el correo';
+            showMessage('errormessage', 'Error enviando el correo');
         }
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('sendmessage').style.display = 'none';
-        document.getElementById('errormessage').style.display = 'block';
-        document.getElementById('errormessage').textContent = 'Ocurrió un error al procesar tu solicitud.';
+        showMessage('errormessage', 'Ocurrió un error al procesar tu solicitud.');
     }
 });

@@ -16,7 +16,6 @@ exports.sendEmail = async (name, email, subject, message) => {
         pass: process.env.MAIL_PASS,
       },
       logger: true,
-      debug: true
     });
 
     const mailOptions = {
