@@ -20,7 +20,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             body: JSON.stringify(data),
         });
         
-        const result = await response.json();
+        const result = response.json();
         
         if (response.ok) {
             document.getElementById('sendmessage').style.display = 'block';

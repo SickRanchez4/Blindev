@@ -50,7 +50,7 @@ exports.sendEmail = async (name, email, subject, message) => {
       console.error('Código de error (Nodemailer):', error.code);
     }
     if (error.command) {
-      console.error('Comando fallido (Nodemailer):', error.command); // e.g., 'AUTH PLAIN'
+      console.error('Comando fallido (Nodemailer):', error.command);
     }
 
     if (error instanceof Error) {
