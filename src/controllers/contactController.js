@@ -7,9 +7,7 @@ exports.handleContactForm = async (req, res) => {
   }
 
   try {
-    console.log('toy ante del wawai')
     await emailService.sendEmail(name, email, subject, message);
-    console.log('Mail sent successfully')
     res.status(200).json({ success: true, message: 'Mail sent successfully' });
   } catch (error) {
     console.error('Error captured in contact-controller:', error);
