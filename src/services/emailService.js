@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 exports.sendEmail = async (name, email, subject, message) => {
   try {
     console.log('Iniciando proceso de envío de correo...');
-    console.log('Usuario de correo (MAIL_USER):', process.env.MAIL_USER ? process.env.MAIL_USER.substring(0, 5) + '...' : 'No definido');
+    // console.log('Usuario de correo (MAIL_USER):', process.env.MAIL_USER ? process.env.MAIL_USER.substring(0, 5) + '...' : 'No definido');
 
     if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
       const errorMsg = 'Error: MAIL_USER o MAIL_PASS no están definidos en las variables de entorno.';
