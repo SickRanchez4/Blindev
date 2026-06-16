@@ -38,19 +38,13 @@ img{ max-width:100%;}
 
 a, a:hover, a:active{ outline:0px !important}
 
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont.eot?v=4.1.0');
-  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 /* Primary Styles
 ---------------------------------*/
 body {
 	background:#fff;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'IBM Plex Sans', sans-serif;
 	font-size:14px;
 	font-weight:normal;
 	color:#888888;
@@ -59,7 +53,7 @@ body {
 h2{
 	font-size:34px;
 	color:#222222;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	font-weight:700;
 	letter-spacing: -1px;
 	margin:0 0 15px 0;
@@ -67,7 +61,7 @@ h2{
 	text-transform:uppercase;
 }
 h3{
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	color:#222222;
 	font-size:16px;
 	margin:0 0 5px 0;
@@ -77,7 +71,7 @@ h3{
 h6{
 	font-size:16px;
 	color:#888888;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'IBM Plex Sans', sans-serif;
 	font-weight:400;
 	text-align:center;
 	margin:0 0 60px 0;
@@ -101,7 +95,7 @@ p{
 	margin:0 auto 35px;
 }
 .header h1{
-	font-family: 'Montserrat',sans-serif;
+	font-family: 'Space Grotesk',sans-serif;
 	font-size:50px;
 	font-weight:400;
 	letter-spacing: -1px;
@@ -118,7 +112,7 @@ p{
 }
 .we-create li{
 	display:inline-block;
-	font-family: 'Montserrat',sans-serif;
+	font-family: 'Space Grotesk',sans-serif;
 	font-size:14px;
 	color: #bcbcbc;
 	text-transform: uppercase;
@@ -145,7 +139,7 @@ color: #fff;
 	color:#fff !important;
 	font-size:16px;
 	font-weight:400;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	display:inline-block;
 	border-radius:3px;
 	text-transform:uppercase;
@@ -190,7 +184,7 @@ color: #fff;
 	display:inline-block;
 	color:#222222;
 	text-transform:uppercase;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	text-decoration: none;
 	line-height:20px;
 	margin:17px 32px;
@@ -230,7 +224,6 @@ color: #fff;
 	font-size:38px;
 	display:block;
 	color:#222;
-	font-family: 'FontAwesome';
 	line-height:38px;
 }
 .service-list-col2{
@@ -269,7 +262,6 @@ color: #fff;
 .featured-box-col1 i{
 	display:block;
 	line-height:38px;
-	font-family: 'FontAwesome';
 	font-size:38px;
 	color:#777777;
 	font-style:normal;
@@ -290,7 +282,7 @@ color: #fff;
 	color:#7cc576;
 	font-size:16px;
 	text-transform:uppercase;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	font-weight:400;
 	line-height:24px;
 	transition:all 0.3s ease-in-out;
@@ -328,7 +320,7 @@ color: #fff;
 	color:#222222;
 	border-radius:4px;
 	text-transform:uppercase;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	background:#f7f7f7;
 	margin-bottom:5px;
 	transition:all 0.3s ease-in-out;
@@ -411,7 +403,7 @@ img {
 	font-size:28px;
 	line-height:41px;
 	margin:30px 0 10px;
-	font-family: ''Open Sans',sans-serif';
+	font-family: 'IBM Plex Sans', sans-serif;
 	font-style: italic;
 }
 .client{
@@ -564,7 +556,6 @@ border: 2px solid #fff;
 	margin:0 11px;
 }
 .team-leader ul li a{
-	font-family: 'FontAwesome';
 	display:inline-block;
 	font-size:28px;
 	color:#fff;	
@@ -597,7 +588,7 @@ border: 2px solid #fff;
 	text-align:center;
 }
 .business-talking h2{
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	font-weight:700;
 	padding:0;
 	margin:20px 0 70px;
@@ -633,7 +624,6 @@ border: 2px solid #fff;
 	font-style:normal;
 	font-size:18px;
 	color:#222222;
-	font-family: 'FontAwesome';
 	font-weight:normal;
 	margin-right:7px;
 }
@@ -696,7 +686,7 @@ border: 2px solid #fff;
 	border-radius:4px;
 	font-size:15px;
 	color:#aaa;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'IBM Plex Sans', sans-serif;
 	margin:0 0 15px 0;
 	transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
@@ -723,7 +713,7 @@ border: 2px solid #fff;
 	color:#ffffff;
 	font-size:14px;
 	text-transform:uppercase;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	font-weight:400;
 	border:0px;
 	transition:all 0.3s ease-in-out;
@@ -800,7 +790,6 @@ border: 2px solid #fff;
 
 .res-nav_click {
 	line-height:38px;
-	font-family: 'FontAwesome';
 	font-size:38px;
 	text-decoration: none !important;
 	color:#777777;
@@ -867,4 +856,65 @@ border: 2px solid #fff;
 .delay-12s { 
 	animation-delay: 1.2s; 
 	-webkit-animation-delay: 1.2s; 
+}
+
+/* ============================================
+	FONT AWESOME 6
+   ============================================ */
+
+/* 1. Forzar que todos los iconos usen Font Awesome */
+.fas, .far, .fal, .fab, .fa {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    display: inline-block !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-rendering: auto !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* 2. Para iconos de marcas (Brands) */
+.fab {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+}
+
+/* 3. Forzar iconos de contacto */
+.contact-info-box i,
+.contact-info-box i.fas,
+.contact-info-box i.fab {
+    font-size: 24px !important;
+    color: #2e7d32 !important;
+    margin-right: 10px !important;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* 5. Forzar iconos de servicios */
+.service-list i.fas {
+    font-size: 30px !important;
+    color: #2e7d32 !important;
+    display: inline-block !important;
+}
+
+/* 6. Forzar iconos de featured */
+.featured-box i.fas {
+    font-size: 40px !important;
+    color: #2e7d32 !important;
+    display: inline-block !important;
+}
+
+/* 7. Forzar icono de menú hamburguesa */
+.res-nav_click i.fas {
+    font-size: 24px !important;
+    color: #ffffff !important;
+    display: inline-block !important;
+}
+
+/* 8. Forzar iconos de redes sociales */
+.social-link i.fab {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+    font-size: 28px !important;
 }
