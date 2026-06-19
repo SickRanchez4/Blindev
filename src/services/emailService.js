@@ -1,13 +1,13 @@
 const nodemailer = require("nodemailer");
-//require('dotenv').config(); 
+const AppError = require('../utils/AppError');
 
 exports.sendEmail = async (name, email, subject, message) => {
   try {
     if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
-      const errorMsg = 'Error: MAIL_USER o MAIL_PASS no están definidos en las variables de entorno.';
-      console.error(errorMsg);
-      throw new Error(errorMsg);
+      throw new AppError('Email configuration is missing. Please set MAIL_USER and MAIL_PASS environment variables.', 500);
     }
+
+    const isProduction = process.env.NODE_ENV === 'production';
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -15,7 +15,7 @@ exports.sendEmail = async (name, email, subject, message) => {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
-      logger: true,
+      logger: !isProduction,
     });
 
     const mailOptions = {
@@ -38,25 +38,23 @@ exports.sendEmail = async (name, email, subject, message) => {
     ]);
 
   } catch (error) {
-    console.error('--- ERROR en emailService ---');
-    console.error('Mensaje de Error :', error.message);
+    const errorTimestamp = new Date().toISOString();
+    console.error(`[${errorTimestamp}] EMAIL SERVICE ERROR:`);
+    console.error('Message:', error.message);
+    console.error('Code:', error.code);
 
+    // Handle specific Nodemailer errors
+    if (error.code === 'EAUTH') {
+      throw new AppError('Email authentication failed. Please verify your email credentials.', 500);
+    }
+    if (error.code === 'ECONNREFUSED') {
+      throw new AppError('Failed to connect to email server. Please try again later.', 503);
+    }
     if (error.response) {
-      console.error('Respuesta del servicio de correo (Nodemailer):', error.response);
-    }
-    if (error.code) {
-      console.error('Código de error (Nodemailer):', error.code);
-    }
-    if (error.command) {
-      console.error('Comando fallido (Nodemailer):', error.command);
+      throw new AppError('Email service returned an error. Please try again later.', 503);
     }
 
-    if (error instanceof Error) {
-      console.error('Stack trace:', error.stack);
-    } else {
-      console.error('Objeto de error completo (no es instancia de Error):', error);
-    }
-    console.error('-----------------------------------------------');
-    throw error;
+    // Generic email error
+    throw new AppError('Failed to send email. Please try again later.', 500);
   }
 };
