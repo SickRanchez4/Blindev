@@ -253,7 +253,13 @@
                         <textarea class="form-control input-text text-area" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensaje"></textarea>
                         <div class="validation"></div>
                     </div>
-                    <div class="text-center"><button type="submit" class="input-btn">Enviar Mensaje</button></div>
+                    <div class="text-center">
+                        <button type="submit" class="input-btn">Enviar Mensaje</button>
+                        <span id="contact-loading" class="d-none ms-2 align-middle">
+                            <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
+                            <span class="ms-1">esto puede tardar algunos segundos</span>
+                        </span>
+                    </div>
                 </form>
             </div>	
         </div>

@@ -8,8 +8,18 @@ const showMessage = (elementId, message, timeout = 3500, isError = false) => {
     }, timeout);
 };
 
-document.getElementById('contactForm').addEventListener('submit', async (e) => {
+const form = document.getElementById('contactForm');
+const loadingIndicator = document.getElementById('contact-loading');
+const submitButton = form.querySelector('button[type="submit"]');
+
+const setLoadingState = (isLoading) => {
+    loadingIndicator.classList.toggle('d-none', !isLoading);
+    submitButton.disabled = isLoading;
+};
+
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    setLoadingState(true);
 
     try {
         const formData = new FormData(e.target);
@@ -43,5 +53,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Network or parsing error:', error);
         showMessage('errormessage', 'An unexpected error occurred. Please try again later.', 5000, true);
+    } finally {
+        setLoadingState(false);
     }
 });
