@@ -34,7 +34,7 @@ exports.sendEmail = async (name, email, subject, message) => {
 
     await Promise.all([
       transporter.sendMail(mailOptions),
-      transporter.sendMail(ownMailOptions),
+      //transporter.sendMail(ownMailOptions),
     ]);
 
   } catch (error) {
