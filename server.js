@@ -1,7 +1,9 @@
 require('dotenv').config();
-const app = require('./src/app');
+const dns = require('dns');
+dns.setDefaultResultOrder('ipv4first');
 
 const PORT = process.env.PORT || 3000;
+const app = require('./src/app');
 
 const server = app.listen(PORT, () => {
   console.log(`[${new Date().toISOString()}] Server running on http://localhost:${PORT}`);

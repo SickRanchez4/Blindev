@@ -10,12 +10,15 @@ exports.sendEmail = async (name, email, subject, message) => {
     const isProduction = process.env.NODE_ENV === 'production';
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
       logger: !isProduction,
+      family: 4,
     });
 
     const mailOptions = {
