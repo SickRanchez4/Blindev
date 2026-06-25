@@ -1,0 +1,67 @@
+:root {
+  /* ============================================
+     COLORES PRIMARIOS
+     ============================================ */
+  --color-primary: #7cc576;     /* Verde principal (botones, links, highlights) */
+  --color-primary-dark: #6ab364; /* Verde más oscuro para hover */
+  --color-primary-light: #a8d99c; /* Verde más claro para variantes */
+
+  /* ============================================
+     COLORES NEUTROS
+     ============================================ */
+  --color-white: #ffffff;        /* Blanco puro */
+  --color-black: #000000;        /* Negro puro */
+  
+  /* Grises - Escala de oscuridad */
+  --color-gray-900: #222222;     /* Gris oscuro (texto principal, headings) */
+  --color-gray-700: #666666;     /* Gris medio-oscuro */
+  --color-gray-500: #888888;     /* Gris medio (texto secundario) */
+  --color-gray-300: #cccccc;     /* Gris claro (bordes, líneas) */
+  --color-gray-200: #dddddd;     /* Gris muy claro (bordes sutiles) */
+  --color-gray-100: #ececec;     /* Gris casi blanco */
+  --color-gray-50: #f8f9fa;      /* Gris casi blanco (fondos claros) */
+  --color-gray-25: #fafafa;      /* Gris extremadamente claro */
+  
+  --color-text-muted: #aaaaaa;   /* Texto deshabilitado/placeholder */
+
+  /* ============================================
+     COLORES DE ESTADO
+     ============================================ */
+  --color-success: #7cc576;      /* Verde (igual que primary para consistencia) */
+  --color-error: #e74c3c;        /* Rojo para errores */
+  --color-error-light: #fadbd8;  /* Rojo claro para fondos de error */
+  --color-error-border: #f5b7b1; /* Rojo para bordes de error */
+
+  /* ============================================
+     COLORES DE REDES SOCIALES
+     ============================================ */
+  --color-facebook: #3267da;
+  --color-whatsapp: #7cc576;
+
+  /* ============================================
+     COLORES DE FONDO
+     ============================================ */
+  --bg-body: #ffffff;            /* Fondo principal */
+  --bg-section: #fafafa;         /* Fondo de secciones alternas */
+  --bg-footer: transparent;      /* Ver imagen de fondo en style.css */
+  --bg-input: #ffffff;           /* Fondo de inputs */
+  --bg-button-secondary: #f7f7f7; /* Botones secundarios */
+
+  /* ============================================
+     COLORES DE BORDE
+     ============================================ */
+  --border-color: #cccccc;
+  --border-color-light: #dddddd;
+  --border-color-input: #cccccc;
+  --border-color-input-focus: var(--color-primary);
+
+  /* ============================================
+     COLORES DE SOMBRA (RGBA)
+     ============================================ */
+  --shadow-xs: rgba(0, 0, 0, 0.05);
+  --shadow-sm: rgba(0, 0, 0, 0.1);
+  --shadow-md: rgba(0, 0, 0, 0.15);
+  --shadow-lg: rgba(0, 0, 0, 0.2);
+  --shadow-xl: rgba(0, 0, 0, 0.25);
+  --shadow-primary: rgba(124, 197, 118, 0.3); /* Sombra del color primario */
+}

@@ -1,7 +1,7 @@
 /* Chatbot Bubble - Contenedor minimalista */
 
 :root {
-  --chatbot-primary: #007bff;
+  --chatbot-primary: var(--color-primary);
 }
 
 /* Widget wrapper */
@@ -18,13 +18,13 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--chatbot-primary) 0%, #0056b3 100%);
+  background: var(--chatbot-primary);
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px var(--shadow-lg);
   transition: all 0.3s ease;
   color: white;
   font-size: 24px;
@@ -33,7 +33,7 @@
 
 .chatbot-bubble-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 16px var(--shadow-xl);
 }
 
 .chatbot-bubble-button:active {
@@ -53,7 +53,7 @@
   height: 620px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 5px 40px var(--shadow-md);
   display: flex;
   flex-direction: column;
   opacity: 0;
@@ -72,8 +72,8 @@
 /* Header mínimo */
 .chatbot-bubble-header {
   padding: 12px 16px;
-  background: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
+  background: var(--bg-section);
+  border-bottom: 1px solid var(--border-color-light);
   display: flex;
   justify-content: flex-end;
 }
@@ -81,7 +81,7 @@
 .chatbot-close-btn {
   background: none;
   border: none;
-  color: #666;
+  color: var(--color-gray-700);
   font-size: 20px;
   cursor: pointer;
   padding: 0;
@@ -94,7 +94,7 @@
 }
 
 .chatbot-close-btn:hover {
-  color: #000;
+  color: var(--color-gray-900);
 }
 
 /* Contenido - Sin estilos, todo viene del endpoint */
