@@ -4,64 +4,50 @@ const fs = require('fs');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
+const config = require('./config');
 const contactRoutes = require('./routes/contact');
+const { contactRateLimiter } = require('./middleware/rateLimiter');
 const errorHandler = require('./middleware/errorHandler');
 const notFound = require('./middleware/notFound');
 
-const app = express();
-const publicDir = path.join(__dirname, '..', 'public');
-const indexPath = path.join(publicDir, 'index.html');
-const indexTemplate = fs.readFileSync(indexPath, 'utf8');
+const PUBLIC_DIR = path.join(__dirname, '..', 'public');
+const INDEX_PATH = path.join(PUBLIC_DIR, 'index.html');
 
-const contactLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: Number(process.env.CONTACT_RATE_LIMIT_MAX) || 20,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    status: 'error',
-    statusCode: 429,
-    message: 'Too many contact requests. Please try again later.',
-  },
-});
+// Escapes "<" so a value like "</script>" cannot break out of the inline script tag.
+const toInlineScriptValue = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 
-const renderIndex = (req, res) => {
-  const endpoint = JSON.stringify(process.env.CHATBOT_ENDPOINT || '');
-  const injected = indexTemplate.replace(
-    '</head>',
-    `<script>window.CHATBOT_ENDPOINT=${endpoint};</script>\n</head>`
-  );
-  res.type('html').send(injected);
+const buildIndexHtml = () => {
+  const template = fs.readFileSync(INDEX_PATH, 'utf8');
+  const configScript = `<script>window.CHATBOT_ENDPOINT=${toInlineScriptValue(config.chatbotEndpoint)};</script>`;
+  return template.replace('</head>', `${configScript}\n</head>`);
 };
 
-// Middleware
-app.use(helmet({
-  contentSecurityPolicy: false,
-}));
+const indexHtml = buildIndexHtml();
+
+const renderIndex = (req, res) => {
+  res.type('html').send(indexHtml);
+};
+
+const app = express();
+
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
-if (process.env.NODE_ENV !== 'production') {
+if (!config.isProduction) {
   app.use(morgan('dev'));
 }
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', renderIndex);
-app.get('/index.html', renderIndex);
-app.use(express.static(publicDir));
+app.get(['/', '/index.html'], renderIndex);
+app.use(express.static(PUBLIC_DIR));
 
-// Routes
-app.use('/contact', contactLimiter, contactRoutes);
+app.use('/contact', contactRateLimiter, contactRoutes);
 
-// Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// 404 Not Found middleware
 app.use(notFound);
-
-// Centralized error handler middleware
 app.use(errorHandler);
 
 module.exports = app;

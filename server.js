@@ -1,34 +1,30 @@
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const config = require('./src/config');
 const app = require('./src/app');
+const logger = require('./src/utils/logger');
 
-const server = app.listen(PORT, () => {
-  console.log(`[${new Date().toISOString()}] Server running on http://localhost:${PORT}`);
+const server = app.listen(config.port, () => {
+  logger.info(`Server running on http://localhost:${config.port}`);
 });
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (err) => {
-  console.error(`[${new Date().toISOString()}] UNHANDLED REJECTION: ${err.message}`);
-  console.error(err.stack);
-  // Gracefully shut down
+const shutdown = (signal) => {
+  logger.info(`${signal} signal received: closing HTTP server`);
   server.close(() => {
-    process.exit(1);
+    logger.info('HTTP server closed');
+    process.exit(0);
   });
+};
+
+process.on('unhandledRejection', (err) => {
+  logger.error(`UNHANDLED REJECTION: ${err && err.message}`, err);
+  server.close(() => process.exit(1));
 });
 
-// Handle uncaught exceptions
 process.on('uncaughtException', (err) => {
-  console.error(`[${new Date().toISOString()}] UNCAUGHT EXCEPTION: ${err.message}`);
-  console.error(err.stack);
+  logger.error(`UNCAUGHT EXCEPTION: ${err.message}`, err);
   process.exit(1);
 });
 
-// Graceful shutdown on SIGTERM
-process.on('SIGTERM', () => {
-  console.log(`[${new Date().toISOString()}] SIGTERM signal received: closing HTTP server`);
-  server.close(() => {
-    console.log('HTTP server closed');
-    process.exit(0);
-  });
-});
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

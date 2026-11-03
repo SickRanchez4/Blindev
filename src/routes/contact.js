@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
-const contactController = require('../controllers/contactController');
+const { handleContactForm } = require('../controllers/contactController');
 const catchAsync = require('../utils/catchAsync');
 
-router.post('/', catchAsync(contactController.handleContactForm));
+const router = express.Router();
+
+router.post('/', catchAsync(handleContactForm));
 
 module.exports = router;

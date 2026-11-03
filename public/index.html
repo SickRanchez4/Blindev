@@ -1,48 +1,53 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Blindev</title>
 <link rel="icon" href="/assets/img/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
 <link href="/assets/css/bootstrap-5.3.8.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/colors.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
-<link href="/assets/css/animate.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/animations.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/chatbot.css" rel="stylesheet" type="text/css">
+
+<script>document.documentElement.classList.add('js');</script>
 
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"></div>
 <header class="header" id="header">
+	<canvas class="hero-particles" aria-hidden="true"></canvas>
 	<div class="container">
-    	<figure class="logo animated fadeInDown delay-07s">
-        	<a href="#"><img src="/assets/img/logo.png" alt=""></a>
+    	<figure class="logo hero-parallax" data-depth="0.6">
+        	<a href="#"><img src="/assets/img/logo.png" alt="Blindev"></a>
         </figure>
-        <h1 class="animated fadeInDown delay-07s">Blindev</h1>
-        <ul class="we-create animated fadeInUp delay-1s">
-        	<li>El poder de la tecnología en tus manos.</li>
+        <h1 class="hero-title hero-parallax" data-depth="0.35">Blindev</h1>
+        <ul class="we-create">
+        	<li data-typewriter="El poder de la tecnología en tus manos.|Soluciones digitales a tu medida.|Software que crece contigo.">El poder de la tecnología en tus manos.</li>
         </ul>
-        <a class="link animated fadeInUp delay-1s servicelink" href="#service">Inicio</a>
+        <a class="link servicelink" href="#service" data-magnetic data-ripple>Inicio</a>
     </div>
+    <a class="scroll-indicator servicelink" href="#service" aria-label="Ir a servicios"></a>
 </header>
 
 <!--main-nav-start-->
-<nav class="main-nav-outer" id="test">
+<nav class="main-nav-outer" id="navbar">
 	<div class="container">
         <ul class="main-nav">
         	<li><a href="#header">Inicio</a></li>
             <li><a href="#service">Servicios</a></li>
-            <li class="small-logo"><a href="#header"><img src="/assets/img/small-logo.png" alt=""></a></li>
+            <li class="small-logo"><a href="#header"><img src="/assets/img/small-logo.png" alt="Blindev"></a></li>
             <li><a href="#Portfolio">Portfolio</a></li>
             <li><a href="#contact">Contáctanos</a></li>
         </ul>
-        <a class="res-nav_click" href="#"><i class="fas fa-bars"></i></a>
+        <a class="res-nav_click" href="#" aria-label="Abrir menú"><i class="fas fa-bars" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--main-nav-end-->
@@ -50,11 +55,11 @@
 <!--main-section-start-->
 <section class="main-section" id="service">
 	<div class="container">
-    	<h2>Servicios</h2>
-    	<h6>Impulsamos tu negocio con soluciones digitales de alta calidad.</h6>
+    	<h2 class="section-title" data-reveal="up">Servicios</h2>
+    	<h6 data-reveal="up">Impulsamos tu negocio con soluciones digitales de alta calidad.</h6>
         <div class="row">
-        	<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
-            	<div class="service-list">
+        	<div class="col-lg-4 col-sm-6" data-reveal-stagger="140">
+            	<div class="service-list" data-reveal="left" data-tilt>
                 	<div class="service-list-col1">
                     	<i class="fas fa-paw"></i>
                     </div>
@@ -63,7 +68,7 @@
                         <p>Digitalizamos tu negocio para que puedas centrarte en tus clientes.</p>
                     </div>
                 </div>
-                <div class="service-list">
+                <div class="service-list" data-reveal="left" data-tilt>
                 	<div class="service-list-col1">
                     	<i class="fas fa-gear"></i>
                     </div>
@@ -72,7 +77,7 @@
                         <p>Convertimos tus ideas en soluciones a medida.</p>
                     </div>
                 </div>
-                <div class="service-list">
+                <div class="service-list" data-reveal="left" data-tilt>
                 	<div class="service-list-col1">
                     	<i class="fas fa-tablet"></i>
                     </div>
@@ -81,7 +86,7 @@
                         <p>Interfaces adaptadas a cualquier tipo de dispositivo.</p>
                     </div>
                 </div>
-                <div class="service-list">
+                <div class="service-list" data-reveal="left" data-tilt>
                 	<div class="service-list-col1">
                     	<i class="fas fa-medkit"></i>
                     </div>
@@ -91,8 +96,8 @@
                     </div>
                 </div>
             </div>
-            <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
-            	<img src="/assets/img/macbook-pro.png" alt="">
+            <figure class="col-lg-8 col-sm-6 text-right float-slow" data-reveal="zoom">
+            	<img src="/assets/img/macbook-pro.png" alt="Laptop mostrando un sitio web">
             </figure>
         
         </div>
@@ -104,35 +109,35 @@
 <section class="main-section alabaster">
 	<div class="container">
     	<div class="row">
-			<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-            	<img  src="/assets/img/iphone.png" alt="">
+			<figure class="col-lg-5 col-sm-4 float-tilt" data-reveal="flip">
+            	<img src="/assets/img/iphone.png" alt="Smartphone mostrando una aplicación">
             </figure>
-        	<div class="col-lg-7 col-sm-8 featured-work">
-            	<h2>Calidad Garantizada</h2>
-            	<P class="padding-b">En Blindev, la calidad no es una opción: es nuestro estándar. Nos comprometemos a ofrecer soluciones excepcionales, desarrolladas por un equipo apasionado y con amplia experiencia. Nuestro enfoque está centrado en superar las expectativas de cada cliente, en cada proyecto.</P>
-            	<div class="featured-box">
-                	<div class="featured-box-col1 wow fadeInRight delay-02s">
+        	<div class="col-lg-7 col-sm-8 featured-work" data-reveal-stagger="140">
+            	<h2 class="section-title" data-reveal="up">Calidad Garantizada</h2>
+            	<p class="padding-b" data-reveal="up">En Blindev, la calidad no es una opción: es nuestro estándar. Nos comprometemos a ofrecer soluciones excepcionales, desarrolladas por un equipo apasionado y con amplia experiencia. Nuestro enfoque está centrado en superar las expectativas de cada cliente, en cada proyecto.</p>
+            	<div class="featured-box" data-reveal="right" data-tilt>
+                	<div class="featured-box-col1">
                     	<i class="fas fa-magic"></i>
                     </div>	
-                	<div class="featured-box-col2 wow fadeInRight delay-02s">
+                	<div class="featured-box-col2">
                         <h3>Enfoque en la Excelencia</h3>
                         <p>La calidad está presente en cada línea de código que escribimos. Nos aseguramos de que cada entrega cumpla con los más altos estándares técnicos y funcionales, cuidando cada detalle para lograr un producto final excepcional.</p>
                     </div>    
                 </div>
-                <div class="featured-box">
-                	<div class="featured-box-col1 wow fadeInRight delay-04s">
+                <div class="featured-box" data-reveal="right" data-tilt>
+                	<div class="featured-box-col1">
                     	<i class="fas fa-gift"></i>
                     </div>	
-                	<div class="featured-box-col2 wow fadeInRight delay-04s">
+                	<div class="featured-box-col2">
                         <h3>Entrega Profesional</h3>
                         <p>Sabemos que una entrega impecable es tan importante como el desarrollo mismo. Por eso, nos aseguramos de que cada solución esté cuidadosamente empaquetada, documentada y lista para ser implementada sin complicaciones.</p>
                     </div>    
                 </div>
-                <div class="featured-box">
-                	<div class="featured-box-col1 wow fadeInRight delay-06s">
+                <div class="featured-box" data-reveal="right" data-tilt>
+                	<div class="featured-box-col1">
                     	<i class="fas fa-dashboard"></i>
                     </div>	
-                	<div class="featured-box-col2 wow fadeInRight delay-06s">
+                	<div class="featured-box-col2">
                         <h3>Escalabilidad Asegurada</h3>
                         <p>Desarrollamos soluciones que crecen contigo. Nuestro software está diseñado para adaptarse a tus necesidades actuales y futuras, facilitando su evolución sin complicaciones.</p>
                     </div>    
@@ -144,49 +149,49 @@
 <!--main-section alabaster-end-->
 
 <!--portfolio-section-start-->
-<section class="main-section paddind" id="Portfolio">
+<section class="main-section portfolio" id="Portfolio">
 	<div class="container">
-    	<h2>Portfolio</h2>
-    	<h6>Explora nuestros productos, conoce nuestro trabajo y descrubre nuestra historia .</h6>
+    	<h2 class="section-title" data-reveal="up">Portfolio</h2>
+    	<h6 data-reveal="up">Explora nuestros productos, conoce nuestro trabajo y descubre nuestra historia.</h6>
       <div class="productoFilter">  
-        <ul class="Portfolio-nav wow fadeIn delay-02s">
-        	<li><a href="#" data-filter="*" class="current" >All</a></li>
-            <li><a href="#" data-filter=".examen" >EXAMEN</a></li>
-            <li><a href="#" data-filter=".ai" >Inteligencia Artificial</a></li>
-            <li><a href="#" data-filter=".fintech" >FinTech</a></li>
-            <li><a href="#" data-filter=".videogame" >Videojuego</a></li>
+        <ul class="Portfolio-nav" data-reveal="up">
+        	<li><a href="#" data-ripple data-filter="*" class="current">All</a></li>
+            <li><a href="#" data-ripple data-filter=".examen">EXAMEN</a></li>
+            <li><a href="#" data-ripple data-filter=".ai">Inteligencia Artificial</a></li>
+            <li><a href="#" data-ripple data-filter=".fintech">FinTech</a></li>
+            <li><a href="#" data-ripple data-filter=".videogame">Videojuego</a></li>
         </ul>
        </div> 
         
 	</div>
-    <div class="productoContainer wow fadeInUp delay-04s">
+    <div class="productoContainer" data-reveal="blur">
             	<div class=" Portfolio-box examen ai">
-                	<a href="https://github.com/SickRanchez4/TutorIA/tree/develop" target="_blank"><img src="/assets/img/uagrm-logo.jpg" alt=""></a>	
+                	<a href="https://github.com/SickRanchez4/TutorIA/tree/develop" target="_blank" rel="noopener noreferrer"><img src="/assets/img/uagrm-logo.jpg" alt="Auxiliar Académico"></a>	
                 	<h3>Auxiliar Académico</h3>
                     <p>Ingeniería de Software II</p>
                 </div>
                 <div class="Portfolio-box ai">
-                	<a href="https://github.com/SickRanchez4/speech-to-text-api" target="_blank"><img src="/assets/img/gh-green.png" alt=""></a>	
+                	<a href="https://github.com/SickRanchez4/speech-to-text-api" target="_blank" rel="noopener noreferrer"><img src="/assets/img/gh-green.png" alt="Speech 2 Text"></a>	
                 	<h3>Speech 2 Text</h3>
                     <p>Voz-a-texto app que funciona con IA y múltiples idiomas.</p>
                 </div>
                 <div class=" Portfolio-box videogame">
-                	<a href="https://github.com/SickRanchez4/adivinator" target="_blank"><img src="/assets/img/gh-green.png" alt=""></a>	
+                	<a href="https://github.com/SickRanchez4/adivinator" target="_blank" rel="noopener noreferrer"><img src="/assets/img/gh-green.png" alt="Adivinator"></a>	
                 	<h3>Adivinator</h3>
                     <p>Juego de adivinanzas.</p>
                 </div>
                 <div class=" Portfolio-box ai" >
-                	<a href="https://github.com/SickRanchez4/github-api-automated" target="_blank"><img src="/assets/img/gh-green.png" alt=""></a>	
+                	<a href="https://github.com/SickRanchez4/github-api-automated" target="_blank" rel="noopener noreferrer"><img src="/assets/img/gh-green.png" alt="Github Automate"></a>	
                 	<h3>Github Automate</h3>
                     <p>App web para automatizar procesos de Github.</p>
                 </div>
                 <div class=" Portfolio-box fintech">
-                	<a href="https://github.com/SickRanchez4/FinTech" target="_blank"><img src="/assets/img/gh-green.png" alt=""></a>	
+                	<a href="https://github.com/SickRanchez4/FinTech" target="_blank" rel="noopener noreferrer"><img src="/assets/img/gh-green.png" alt="Tienda de Poleras"></a>	
                 	<h3>Tienda de Poleras</h3>
                     <p>Proyecto para evaluar la eficiencia de 4 SMA sobre acciones de empresas.</p>
                 </div>
                 <div class=" Portfolio-box ai">
-                	<a href="https://github.com/SickRanchez4/rag-bot" target="_blank"><img src="/assets/img/gh-green.png" alt=""></a>	
+                	<a href="https://github.com/SickRanchez4/rag-bot" target="_blank" rel="noopener noreferrer"><img src="/assets/img/gh-green.png" alt="RAG Bot"></a>	
                 	<h3>RAG Bot</h3>
                     <p>Chatbot que usa RAG (Retrieval Augmented Generation).</p>
                 </div>
@@ -198,11 +203,11 @@
 <div class="c-logo-part">
 	<div class="container">
     	<ul>
-        	<li><a><img src="/assets/img/c-liogo1.png" alt=""></a></li>
-            <li><a><img src="/assets/img/c-liogo2.png" alt=""></a></li>
-            <li><a><img src="/assets/img/c-liogo3.png" alt=""></a></li>
-            <li><a><img src="/assets/img/c-liogo4.png" alt=""></a></li>
-            <li><a><img src="/assets/img/c-liogo5.png" alt=""></a></li>
+        	<li><a><img src="/assets/img/c-liogo1.png" alt="Logo de cliente 1"></a></li>
+            <li><a><img src="/assets/img/c-liogo2.png" alt="Logo de cliente 2"></a></li>
+            <li><a><img src="/assets/img/c-liogo3.png" alt="Logo de cliente 3"></a></li>
+            <li><a><img src="/assets/img/c-liogo4.png" alt="Logo de cliente 4"></a></li>
+            <li><a><img src="/assets/img/c-liogo5.png" alt="Logo de cliente 5"></a></li>
     	</ul>
 	</div>
 </div>
@@ -211,7 +216,7 @@
 <!--business-talking-start-->
 <section class="business-talking">
 	<div class="container">
-        <h2>Digitaliza tu negocio.</h2>
+        <h2 data-reveal="words">Digitaliza tu negocio.</h2>
     </div>
 </section>
 <!--business-talking-end-->
@@ -220,48 +225,44 @@
 <div class="container">
 <section class="main-section contact" id="contact">
     <div class="row">
-        <div class="col-lg-6 col-sm-7 wow fadeInLeft">
-            <div class="contact-info-box address clearfix">
+        <div class="col-lg-6 col-sm-7" data-reveal-stagger="120">
+            <div class="contact-info-box address clearfix" data-reveal="left">
                 <h3><i class="fas fa-map"></i>Sede: </h3>
                 <span>Santa Cruz, Bolivia.</span>
             </div>
-            <div class="contact-info-box phone clearfix">
+            <div class="contact-info-box phone clearfix" data-reveal="left">
                 <h3><i class="fas fa-phone"></i>Telf:</h3>
                 <span>(+591) 76543210</span>
             </div>
-            <div class="contact-info-box email clearfix">
+            <div class="contact-info-box email clearfix" data-reveal="left">
                 <h3><i class="fas fa-envelope"></i>Email:</h3>
                 <span>blindev.solutions@gmail.com</span>
             </div>
-            <ul class="social-link">
-                <li class="facebook"><a href="https://www.facebook.com/Blindev.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                <li class="whatsapp"><a href="https://wa.me/59176673578" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+            <ul class="social-link" data-reveal="up">
+                <li class="facebook"><a href="https://www.facebook.com/Blindev.Solutions/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                <li class="whatsapp"><a href="https://wa.me/59176673578" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
             </ul>
         </div>
 
-        <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+        <div class="col-lg-6 col-sm-5" data-reveal="right">
             <div class="form">
-                <div id="sendmessage" style="display: none;">Tu mensaje fue enviado con éxito. Gracias!</div>
-                <div id="errormessage" style="display: none;"></div>
+                <div id="sendmessage" class="alert alert-success" role="status" aria-live="polite"></div>
+                <div id="errormessage" class="alert alert-danger" role="alert" aria-live="assertive"></div>
                 <form id="contactForm" action="/contact" method="post" role="form" class="contactForm">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control input-text" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                        <div class="validation"></div>
+                        <input type="text" name="name" class="form-control input-text" id="name" placeholder="Nombre" aria-label="Nombre" autocomplete="name" required minlength="2" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control input-text" name="email" id="email" placeholder="Correo" data-rule="email" data-msg="Please enter a valid email" />
-                        <div class="validation"></div>
+                        <input type="email" class="form-control input-text" name="email" id="email" placeholder="Correo" aria-label="Correo" autocomplete="email" required />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-text" name="subject" id="subject" placeholder="Tema" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                        <div class="validation"></div>
+                        <input type="text" class="form-control input-text" name="subject" id="subject" placeholder="Tema" aria-label="Tema" required minlength="3" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control input-text text-area" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensaje"></textarea>
-                        <div class="validation"></div>
+                        <textarea class="form-control input-text text-area" name="message" id="message" rows="5" placeholder="Mensaje" aria-label="Mensaje" required minlength="10"></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="input-btn">Enviar Mensaje</button>
+                        <button type="submit" class="input-btn" data-magnetic data-ripple>Enviar Mensaje</button>
                         <span id="contact-loading" class="d-none ms-2 align-middle">
                             <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
                             <span class="ms-1">esto puede tardar algunos segundos</span>
@@ -275,9 +276,11 @@
 </div>
 <!--contact-form-end-->
 
+<button type="button" class="back-to-top" aria-label="Volver arriba"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a href="#"><img src="/assets/img/footer-logo.png" alt=""></a></div>
+        <div class="footer-logo"><a href="#"><img src="/assets/img/footer-logo.png" alt="Blindev"></a></div>
         <span class="copyright">&copy; Blindev. All Rights Reserved</span>
     </div>
 </footer>
@@ -287,9 +290,9 @@
 <script type="text/javascript" src="/assets/js/jquery-scrolltofixed.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.isotope.js"></script>
-<script type="text/javascript" src="/assets/js/wow.js"></script>
 
 <script type="text/javascript" src="/main.js"></script>
+<script type="text/javascript" src="/animations.js"></script>
 <script type="text/javascript" src="/contactForm.js"></script>
 <script type="text/javascript" src="/chatbot.js"></script>
 

@@ -1,8 +1,8 @@
-// Wrapper for async route handlers to catch errors automatically
-const catchAsync = (fn) => {
-  return (req, res, next) => {
-    fn(req, res, next).catch(next);
-  };
+// Wraps a route handler so both sync throws and rejected promises reach the error middleware.
+const catchAsync = (fn) => (req, res, next) => {
+  Promise.resolve()
+    .then(() => fn(req, res, next))
+    .catch(next);
 };
 
 module.exports = catchAsync;

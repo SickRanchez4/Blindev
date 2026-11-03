@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node --test",
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Fernando Quiroga",
+  "license": "MIT",
+  "description": "Sitio web de Blindev con formulario de contacto y chatbot",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^16.4.7",
@@ -18,5 +19,8 @@
     "helmet": "^8.2.0",
     "morgan": "^1.11.0",
     "nodemailer": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18.11"
   }
 }

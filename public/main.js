@@ -1,81 +1,67 @@
 /**
  * Main JavaScript - Inicializaciones y lógica de la página
  */
+$(function () {
+    const MOBILE_BREAKPOINT_PX = 768;
+    const NAV_SCROLL_OFFSET_PX = 102;
+    const SCROLL_DURATION_MS = 1500;
+    const PORTFOLIO_COLUMN_WIDTH_PX = 375;
+    const PORTFOLIO_GUTTER_PX = 30;
 
-document.addEventListener('DOMContentLoaded', function() {
-    // ============================================
-    // Navbar - ScrollToFixed & Mobile Menu
-    // ============================================
-    $('#test').scrollToFixed();
-    
-    $('.res-nav_click').click(function(){
-        $('.main-nav').slideToggle();
-        return false;    
-    });
+    const $mainNav = $('.main-nav');
 
-    // ============================================
-    // Smooth Scroll a Anchors
-    // ============================================
-    $('.main-nav li a, .servicelink').bind('click', function(event){
-        var $anchor = $(this);
-        
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - 102
-        }, 1500, 'easeInOutExpo');
-        
-        if ($(window).width() < 768) { 
-            $('.main-nav').hide(); 
-        }
-        event.preventDefault();
-    });
+    const initNavbar = () => {
+        $('#navbar').scrollToFixed();
 
-    // ============================================
-    // WOW.js - Animaciones
-    // ============================================
-    if (typeof WOW !== 'undefined') {
-        var wow = new WOW({
-            animateClass: 'animated',
-            offset: 100
+        $('.res-nav_click').on('click', (event) => {
+            event.preventDefault();
+            $mainNav.slideToggle();
         });
-        wow.init();
-    }
+    };
 
-    // ============================================
-    // Isotope - Portfolio Masonry
-    // ============================================
-    if (typeof $.fn.isotope !== 'undefined') {
-        var $container = $('.productoContainer');
-        if ($container.length) {
-            var $body = $('body');
-            var colW = 375;
-            var columns = null;
+    const initSmoothScroll = () => {
+        $('.main-nav li a, .servicelink').on('click', function (event) {
+            event.preventDefault();
 
-            $container.isotope({
-                resizable: true,
-                masonry: {
-                    columnWidth: colW
-                }
-            });
-            
-            $(window).smartresize(function(){
-                var currentColumns = Math.floor(($body.width() - 30) / colW);
-                if (currentColumns !== columns) {
-                    columns = currentColumns;
-                    $container.width(columns * colW).isotope('reLayout');
-                }
-            }).smartresize();
+            $('html, body').stop().animate({
+                scrollTop: $($(this).attr('href')).offset().top - NAV_SCROLL_OFFSET_PX,
+            }, SCROLL_DURATION_MS, 'easeInOutExpo');
 
-            // Portfolio Filter
-            $('.productoFilter a').click(function(){
-                $('.productoFilter .current').removeClass('current');
-                $(this).addClass('current');
-        
-                var selector = $(this).attr('data-filter');
-                $container.isotope({
-                    filter: selector,
-                });
-                return false;
-            });
-        }
-    }
+            if ($(window).width() < MOBILE_BREAKPOINT_PX) {
+                $mainNav.hide();
+            }
+        });
+    };
+
+    const initPortfolio = () => {
+        const $container = $('.productoContainer');
+        if (typeof $.fn.isotope === 'undefined' || !$container.length) return;
+
+        const $body = $('body');
+        let columns = null;
+
+        $container.isotope({
+            resizable: true,
+            masonry: { columnWidth: PORTFOLIO_COLUMN_WIDTH_PX },
+        });
+
+        $(window).smartresize(() => {
+            const currentColumns = Math.floor(($body.width() - PORTFOLIO_GUTTER_PX) / PORTFOLIO_COLUMN_WIDTH_PX);
+            if (currentColumns !== columns) {
+                columns = currentColumns;
+                $container.width(columns * PORTFOLIO_COLUMN_WIDTH_PX).isotope('reLayout');
+            }
+        }).smartresize();
+
+        $('.productoFilter a').on('click', function (event) {
+            event.preventDefault();
+            $('.productoFilter .current').removeClass('current');
+            $(this).addClass('current');
+            $container.isotope({ filter: $(this).attr('data-filter') });
+        });
+    };
+
+    initNavbar();
+    initSmoothScroll();
+    initPortfolio();
 });

@@ -1,103 +1,99 @@
 /**
- * Chatbot Bubble Container
- * Contenedor flotante vacío que muestra el chatbot desde el endpoint
- * 
+ * Chatbot Bubble
+ * Botón flotante que abre un panel con el chatbot cargado (en un iframe) desde CHATBOT_ENDPOINT.
  */
-
 class ChatbotBubble {
   constructor(endpoint) {
     this.endpoint = endpoint;
     this.isOpen = false;
-    this.init();
+    this.isLoaded = false;
+    this.render();
+    this.bindEvents();
   }
 
-  init() {
-    this.createBubble();
-    this.attachEvents();
+  static createElement(tag, { id, className, html, attributes = {} } = {}) {
+    const element = document.createElement(tag);
+    if (id) element.id = id;
+    if (className) element.className = className;
+    if (html) element.innerHTML = html;
+    Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value));
+    return element;
   }
 
-  createBubble() {
-    // Botón flotante
-    const button = document.createElement('button');
-    button.id = 'chatbot-button';
-    button.className = 'chatbot-bubble-button';
-    button.innerHTML = '<i class="fas fa-comments"></i>';
-    button.title = 'Abrir chat';
+  render() {
+    this.button = ChatbotBubble.createElement('button', {
+      id: 'chatbot-button',
+      className: 'chatbot-bubble-button',
+      html: '<i class="fas fa-comments" aria-hidden="true"></i>',
+      attributes: { type: 'button', title: 'Abrir chat', 'aria-label': 'Abrir chat', 'aria-expanded': 'false' },
+    });
 
-    // Contenedor
-    const container = document.createElement('div');
-    container.id = 'chatbot-container';
-    container.className = 'chatbot-bubble-container';
+    this.closeButton = ChatbotBubble.createElement('button', {
+      id: 'chatbot-close-button',
+      className: 'chatbot-close-btn',
+      html: '<i class="fas fa-times" aria-hidden="true"></i>',
+      attributes: { type: 'button', title: 'Cerrar', 'aria-label': 'Cerrar chat' },
+    });
 
-    // Header con botón cerrar
-    const header = document.createElement('div');
-    header.className = 'chatbot-bubble-header';
-    header.innerHTML = '<button id="chatbot-close-button" class="chatbot-close-btn" title="Cerrar"><i class="fas fa-times"></i></button>';
+    const header = ChatbotBubble.createElement('div', { className: 'chatbot-bubble-header' });
+    header.appendChild(this.closeButton);
 
-    // Área de contenido (vacía, se llena desde el endpoint)
-    const content = document.createElement('div');
-    content.id = 'chatbot-content';
-    content.className = 'chatbot-bubble-content';
+    this.content = ChatbotBubble.createElement('div', { id: 'chatbot-content', className: 'chatbot-bubble-content' });
 
-    container.appendChild(header);
-    container.appendChild(content);
+    this.container = ChatbotBubble.createElement('div', { id: 'chatbot-container', className: 'chatbot-bubble-container' });
+    this.container.append(header, this.content);
 
-    // Widget wrapper
-    const widget = document.createElement('div');
-    widget.id = 'chatbot-widget';
-    widget.className = 'chatbot-widget';
-    widget.appendChild(button);
-    widget.appendChild(container);
+    this.widget = ChatbotBubble.createElement('div', { id: 'chatbot-widget', className: 'chatbot-widget' });
+    this.widget.append(this.button, this.container);
 
-    document.body.appendChild(widget);
-
-    this.button = button;
-    this.container = container;
-    this.content = content;
+    document.body.appendChild(this.widget);
   }
 
-  attachEvents() {
+  bindEvents() {
     this.button.addEventListener('click', () => this.toggle());
-    document.getElementById('chatbot-close-button').addEventListener('click', () => this.close());
+    this.closeButton.addEventListener('click', () => this.close());
   }
 
   toggle() {
-    this.isOpen ? this.close() : this.open();
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
   }
 
   open() {
-    this.isOpen = true;
-    this.button.classList.add('hidden');
-    this.container.classList.add('open');
-    
-    // Cargar contenido del endpoint si aún no está cargado
-    if (this.content.innerHTML.trim() === '') {
+    this.setOpen(true);
+    this.widget.classList.add('has-opened');
+    if (!this.isLoaded) {
       this.loadContent();
     }
   }
 
   close() {
-    this.isOpen = false;
-    this.button.classList.remove('hidden');
-    this.container.classList.remove('open');
+    this.setOpen(false);
+  }
+
+  setOpen(isOpen) {
+    this.isOpen = isOpen;
+    this.button.classList.toggle('hidden', isOpen);
+    this.button.setAttribute('aria-expanded', String(isOpen));
+    this.container.classList.toggle('open', isOpen);
   }
 
   loadContent() {
-    const iframe = document.createElement('iframe');
-    iframe.src = this.endpoint;
-    iframe.frameborder = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.borderRadius = '0';
+    const iframe = ChatbotBubble.createElement('iframe', {
+      className: 'chatbot-iframe',
+      attributes: { src: this.endpoint, title: 'Chatbot Blindev' },
+    });
     this.content.appendChild(iframe);
+    this.isLoaded = true;
   }
 }
 
-// Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
   const endpoint = window.CHATBOT_ENDPOINT;
-  if (!endpoint) {
-    return;
+  if (endpoint) {
+    window.chatbot = new ChatbotBubble(endpoint);
   }
-  window.chatbot = new ChatbotBubble(endpoint);
 });
